@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import axios from 'axios';
+import Tempo from './components/tempo';
+import Api from './components/api';
 
 export default function App() {
-  const [tex, setTex] = useState(0);
-  const [texx, setTexx] = useState(0);
+  const [dados, setDados] = useState("");
+  const [cidade, setCidade] = useState("");
+
+  async function carregaDados(){
+    const response = await Api.get(`weather?array_limit=1&fields=only_results,temp,city_name,description,forecast,max,min,date&key=203f1c51&city_name=${cidade}`)
+    setDados(response.data.forecast[0]); 
+  }
 
   return (
     <View style={styles.container}>
@@ -15,17 +21,18 @@ export default function App() {
           style={styles.input}
           placeholder='Digite aqui sua cidade'
           keyboardType='text'
-          value={tex}
-          onChangeText={()=>axios.get(`https://api.hgbrasil.com/weather?key=203f1c51&${tex}`).then((response)=>setTexx(response.data))}
+          onChangeText={(value)=>setCidade(value)}
         />
         <TouchableOpacity
          style={styles.botao}
-         //onPress={()=>axios.get('https://api.hgbrasil.com/weather?key=203f1c51').then((response)=>setValor(response.data.USDBRL))}
+         onPress={carregaDados}
         >
         <Text style={styles.textoBotao}> Buscar </Text>
         </TouchableOpacity>
         
-        <Text>{texx}</Text>
+        <Text>
+          <Tempo data={dados}/>
+        </Text>
       </View>
     </View>
   );
