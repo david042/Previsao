@@ -5,11 +5,11 @@ import Api from './components/api';
 
 export default function App() {
   const [dados, setDados] = useState("");
-  const [cidade, setCidade] = useState("");
+  const [cidade, setCidade] = useState("Mongaguá");
 
   async function carregaDados(){
-    const response = await Api.get(`weather?array_limit=1&fields=only_results,temp,city_name,description,forecast,max,min,date&key=203f1c51&city_name=${cidade}`)
-    setDados(response.data.forecast[0]); 
+    const response = await Api.get(`weather?array_limit=2&fields=only_results,city_name,temp,date,time,description,forecast,min,max&key=2cf6d53f&city_name=${cidade}`)
+    setDados(response.data); 
   }
 
   return (
@@ -20,7 +20,7 @@ export default function App() {
         <TextInput
           style={styles.input}
           placeholder='Digite aqui sua cidade'
-          keyboardType='text'
+          keyboardType='default'
           onChangeText={(value)=>setCidade(value)}
         />
         <TouchableOpacity
@@ -29,7 +29,6 @@ export default function App() {
         >
         <Text style={styles.textoBotao}> Buscar </Text>
         </TouchableOpacity>
-        
         <Text>
           <Tempo data={dados}/>
         </Text>

@@ -1,50 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 export default function Tempo(props){
     return(
-        <>
-            <Text style={styles.texto}> Min: {props.data.min}{"\n"}</Text>
-            <Text style={styles.texto}> Max: {props.data.max}{"\n"}</Text>
-            <Text style={styles.texto}> Descrição: {props.data.description}{"\n"}</Text>
-        </>
+      <>
+        <Text style={styles.texto}>
+          Tempo Agora para {props.data.city_name + "\n"}
+          Temperatura: {props.data.temp + "\n"}
+          Data da consulta: {props.data.date + "\n"}
+          Hora da consulta: {props.data.time + "\n"}
+          Descrição: {props.data.description + "\n"}
+          Previsão para o resto do dia: {"\n"}
+          Min: {props.data.forecast[0].min + "\n"} 
+          Max: {props.data.forecast[0].max + "\n"}
+          Descrição: {props.data.forecast[0].description + "\n"}
+          Tempo amanhã: {"\n"}
+          Min: {props.data.forecast[1].min + "\n"} 
+          Max: {props.data.forecast[1].max + "\n"}
+          Descrição: {props.data.forecast[1].description}
+        </Text>
+      </>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    texto:{
-      fontSize: 30,
-      alignSelf: 'center'
-    },
-    botao:{
-      width: '50%',
-      alignSelf: 'center',
-      borderWidth: 1,
-      fontSize: 30,
-      borderRadius: 6,
-      backgroundColor: '#000',
-      marginBottom: 10,
-      textAlign: 'center'
-    },
-    textoBotao:{
-      color: '#fff',
+  texto:{
       fontSize: 30
-    },
-    input:{
-      width: '80%',
-      alignSelf: 'center',
-      borderWidth: 1,
-      fontSize: 30,
-      borderRadius: 6,
-      backgroundColor: '#000',
-      color: '#fff',
-      marginTop: 10,
-      marginBottom: 10
-    }
+  }
 });
