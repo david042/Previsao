@@ -25,6 +25,7 @@ export default function Tempo(props){
 
 const styles = StyleSheet.create({
   texto:{
-      fontSize: 30
+    fontSize: 30,
+    alignSelf: 'center'
   }
 });
