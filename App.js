@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native';
-import Tempo from './components/tempo';
 import Api from './components/api';
 
 export default function App() {
@@ -27,9 +26,6 @@ export default function App() {
       >
       <Text style={styles.textoBotao}> Buscar </Text>
       </TouchableOpacity>
-      {/*<Text>
-        <Tempo data={dados}/>
-      </Text>*/}
       <FlatList
         data={dados}
         renderItem={({item})=>{
@@ -51,40 +47,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    fontSize: 30
   },
   texto:{
     fontSize: 30,
     alignSelf: 'center'
   },
   botao:{
-    width: '50%',
+    width: '30%',
     alignSelf: 'center',
     borderWidth: 1,
     fontSize: 30,
     borderRadius: 6,
     backgroundColor: '#000',
     marginBottom: 10,
-    textAlign: 'center'
   },
   textoBotao:{
     color: '#fff',
-    fontSize: 30
+    fontSize: 20,
+    textAlign: 'center'
   },
   input:{
     width: '80%',
     alignSelf: 'center',
-    borderWidth: 1,
+    borderWidth: 3,
     fontSize: 30,
     borderRadius: 6,
-    backgroundColor: '#000',
     color: '#fff',
     marginTop: 10,
-    marginBottom: 10
-  },
-  previsao:{
-    width: '100%',
-    fontSize: 30
+    marginBottom: 10,
+    textAlign: 'center',
+    color: '#000'
   }
 });
